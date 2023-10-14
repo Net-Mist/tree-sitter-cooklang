@@ -1,0 +1,99 @@
+================================================================================
+Tricky
+================================================================================
+
+foo @bar bar{1%kg}
+
+>> foo[-foo--?-]:bar[- -- BAR -]
+
+>> ba/r: fo-o
+
+foo @po [--]mme verte--- {}
+foo @po [--]mme verte{}
+foo @po [--]mme verte{1}
+foo @po [--]mme verte{1%kg}
+foo @po [--]mme verte{1 %kg}
+foo @po [--]mme verte{   1  %  kg }
+foo @po [--]mme verte{   1 [- ou plus-] %  kg [- ou pas -] }
+foo @po [--]mme verte{   1 [- ou plus-] %  kg [- ou pas -] }
+
+>> ba/r: fo-o
+
+
+--------------------------------------------------------------------------------
+
+(recipe
+  (step
+    (text)
+    (ingredient
+      (name)
+      (quantity)
+      (unit)))
+  (metadata
+    (metadata_key)
+    (comment_block)
+    (metadata_value)
+    (comment_block))
+  (metadata
+    (metadata_key)
+    (metadata_value))
+  (step
+    (text)
+    (ingredient
+      (name))
+    (comment_block)
+    (text)
+    (comment_line))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)
+      (unit)))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)
+      (unit)))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)
+      (unit)))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)
+      (comment_block)
+      (unit)
+      (comment_block)))
+  (step
+    (text)
+    (ingredient
+      (name
+        (comment_block))
+      (quantity)
+      (comment_block)
+      (unit)
+      (comment_block)))
+  (metadata
+    (metadata_key)
+    (metadata_value)))
