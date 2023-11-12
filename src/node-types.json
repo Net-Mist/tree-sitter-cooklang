@@ -1,0 +1,254 @@
+[
+  {
+    "type": "cookware",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "quantity": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantity",
+            "named": true
+          }
+        ]
+      },
+      "unit": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ingredient",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "quantity": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantity",
+            "named": true
+          }
+        ]
+      },
+      "unit": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metadata",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_key",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "metadata_value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "metadata_key",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "metadata_value",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "recipe",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "step",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "step",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "cookware",
+          "named": true
+        },
+        {
+          "type": "ingredient",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        },
+        {
+          "type": "timer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "timer",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "quantity": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "quantity",
+            "named": true
+          }
+        ]
+      },
+      "unit": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "unit",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "comment_block",
+    "named": true
+  },
+  {
+    "type": "comment_line",
+    "named": true
+  },
+  {
+    "type": "quantity",
+    "named": true
+  },
+  {
+    "type": "unit",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
+  }
+]

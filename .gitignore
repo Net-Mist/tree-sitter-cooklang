@@ -1,6 +1,2 @@
-binding.gyp
-bindings
-example-file
-src/
 target/
 *.cook

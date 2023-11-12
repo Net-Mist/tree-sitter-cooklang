@@ -1,0 +1,344 @@
+{
+  "name": "cooklang",
+  "rules": {
+    "recipe": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "metadata"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_empty_line"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "step"
+          }
+        ]
+      }
+    },
+    "metadata_key": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "[^:]"
+      }
+    },
+    "metadata_value": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "[^\\n]"
+      }
+    },
+    "metadata": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ">>"
+        },
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "SYMBOL",
+            "name": "metadata_key"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "metadata_value"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        }
+      ]
+    },
+    "_empty_line": {
+      "type": "PATTERN",
+      "value": "\\n"
+    },
+    "step": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "ingredient"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "text"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "timer"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "cookware"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\n"
+        }
+      ]
+    },
+    "ingredient": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_component"
+        }
+      ]
+    },
+    "cookware": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_component"
+        }
+      ]
+    },
+    "timer": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "~"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_component"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_amount"
+            }
+          ]
+        }
+      ]
+    },
+    "_amount": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "quantity",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "quantity"
+                  }
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "%"
+                        },
+                        {
+                          "type": "FIELD",
+                          "name": "unit",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "unit"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "_component": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_word"
+            },
+            "named": true,
+            "value": "name"
+          }
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "text"
+                },
+                "named": true,
+                "value": "name"
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_amount"
+            }
+          ]
+        }
+      ]
+    },
+    "quantity": {
+      "type": "PATTERN",
+      "value": "([^\\n}%\\[\\-]|-[^-]|\\[[^-])+"
+    },
+    "unit": {
+      "type": "PATTERN",
+      "value": "([^\\n}\\[\\-]|-[^\\-]|\\[[^-])+"
+    },
+    "text": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "_word"
+        }
+      }
+    },
+    "_word": {
+      "type": "PATTERN",
+      "value": "([^ \\t\\n@#%~\\-\\[\\]\\{\\}]|-[^-])+"
+    },
+    "comment_block": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "[-"
+          },
+          {
+            "type": "PATTERN",
+            "value": "([^-]|-[^\\]])*"
+          },
+          {
+            "type": "STRING",
+            "value": "-]"
+          }
+        ]
+      }
+    },
+    "comment_line": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "--"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          }
+        ]
+      }
+    }
+  },
+  "extras": [
+    {
+      "type": "SYMBOL",
+      "name": "comment_block"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment_line"
+    },
+    {
+      "type": "STRING",
+      "value": " "
+    },
+    {
+      "type": "STRING",
+      "value": "\t"
+    }
+  ],
+  "conflicts": [
+    [
+      "_component",
+      "text"
+    ]
+  ],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
