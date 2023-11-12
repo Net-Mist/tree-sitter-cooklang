@@ -6,7 +6,6 @@ clean:
 		Cargo.lock \
 		Cargo.toml \
 		example-file \
-		package.json \
 		src/ \
 		target/
 

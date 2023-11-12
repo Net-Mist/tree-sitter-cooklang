@@ -39,7 +39,10 @@ module.exports = grammar({
         "}",
       ),
     _component: ($) =>
-      choice(alias($._word, $.name), seq(alias($.text, $.name), $._amount)),
+      choice(
+        field("name", alias($._word, $.name)),
+        seq(field("name", alias($.text, $.name)), $._amount),
+      ),
     quantity: ($) => /([^\n}%\[\-]|-[^-]|\[[^-])+/,
     unit: ($) => /([^\n}\[\-]|-[^\-]|\[[^-])+/,
     text: ($) => prec.right(repeat1($._word)),
